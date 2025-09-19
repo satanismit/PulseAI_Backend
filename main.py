@@ -35,7 +35,7 @@ app = FastAPI(title="PulseAI")
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173","https://smitpulseai.netlify.app/"],  # React dev server
+    allow_origins=["http://localhost:5173","https://smitpulseai.netlify.app"],  # React dev server
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
