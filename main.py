@@ -30,12 +30,12 @@ print("========================")
 
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-app = FastAPI(title="PulseAI")
+app = FastAPI(title="Taaza Khabar")
 
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # React dev server
+    allow_origins=["http://localhost:5173","https://smitpulseai.netlify.app"],  # React dev server
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -182,7 +182,7 @@ def format_articles_for_email(articles):
     </head>
     <body>
         <div class="header">
-            <h1>📰 Your News Update from PulseAI</h1>
+            <h1>📰 Your News Update from Taaza Khabar</h1>
             <p>Here are your selected news articles</p>
         </div>
     """
@@ -200,7 +200,7 @@ def format_articles_for_email(articles):
     
     email_content += """
         <div class="footer">
-            <p>Powered by PulseAI - Intelligent News Without Overload</p>
+            <p>Powered by Taaza Khabar - Intelligent News Without Overload</p>
             <p>This email was sent because you requested news updates through our platform.</p>
         </div>
     </body>
@@ -211,7 +211,7 @@ def format_articles_for_email(articles):
 
 def format_articles_for_whatsapp(articles):
     """Format articles for WhatsApp message"""
-    message = "📰 *Your News Update from PulseAI*\n\n"
+    message = "📰 *Your News Update from Taaza Khabar*\n\n"
     
     for i, article in enumerate(articles, 1):
         message += f"*{i}. {article.get('title', 'No Title')}*\n"
@@ -222,7 +222,7 @@ def format_articles_for_whatsapp(articles):
             message += f"🔗 Read more: {article.get('link')}\n\n"
         message += "─────────────────\n\n"
     
-    message += "Powered by PulseAI 🤖\n"
+    message += "Powered by Taaza Khabar 🤖\n"
     message += "Intelligent News Without Overload"
     
     return message
@@ -249,7 +249,7 @@ async def send_email(request: EmailRequest):
         
         # Create message
         msg = MIMEMultipart('alternative')
-        msg['Subject'] = f"📰 News Update from PulseAI - {len(request.articles)} Articles"
+        msg['Subject'] = f"📰 News Update from Taaza Khabar - {len(request.articles)} Articles"
         msg['From'] = sender_email
         msg['To'] = request.email
         
